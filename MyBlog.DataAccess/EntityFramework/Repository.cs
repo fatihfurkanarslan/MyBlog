@@ -8,15 +8,18 @@ using System.Linq.Expressions;
 
 namespace MyBlog.DataAccess.EntityFramework
 {
-    public class Repository<T> : IRepository<T>
+    public class Repository<T> : BaseRepository, IRepository<T>
         where T : class
     {
+        //base classtan db yi kalıtarak alıyoruz. 
+        //MyBlogDbContext db;
 
-        private MyBlogDbContext db = new MyBlogDbContext();
         private DbSet<T> setObject;
 
         public Repository()
         {
+            //artık burda değil baserepository de üretiyoruz dbcontext'mizi
+            //db = BaseRepository.CreateContext();
             setObject = db.Set<T>();
         }
 

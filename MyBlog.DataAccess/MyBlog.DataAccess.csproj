@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\BaseRepository.cs" />
     <Compile Include="EntityFramework\IRepository.cs" />
     <Compile Include="EntityFramework\MyBlogDbContext.cs" />
     <Compile Include="EntityFramework\MyInitializer.cs" />

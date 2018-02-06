@@ -18,6 +18,22 @@ namespace MyBlog.Business
 
             Repository<Category> catRepo = new Repository<Category>();
             List<Category> cats = catRepo.GetList();
+            Repository<Note> notes = new Repository<Note>();
+
+            Note not = new Note
+            {
+                Title = "baslik1",
+                Content = "konu1",
+                CreatedOn = DateTime.Now,
+                ModifiedOn = DateTime.Now,
+                ModifiedUsername = "fatiharslan",
+                IsDraft = false,
+                likeCount = 5,
+                CategoryId = 4
+            };
+
+            notes.Insert(not);
+
         }
     }
 }
