@@ -11,7 +11,7 @@ namespace MyBlog.Entities
 
     // bir user birden fazla like atabilir ve bir note 'un birden fazla like'ı olabilir. bu yüzden ara tablo yapıyoruz. 
     [Table("Likes")]
-    public class Liked : BaseEntity
+    public class Liked 
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

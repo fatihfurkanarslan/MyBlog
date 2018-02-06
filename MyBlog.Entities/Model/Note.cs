@@ -40,5 +40,12 @@ namespace MyBlog.Entities
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        //public Note()
+        //{
+        //    Like = new List<Liked>();
+        //    Comment = new List<Comment>();
+
+        //}
     }
 }

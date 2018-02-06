@@ -12,7 +12,7 @@ namespace MyBlog.Business
         public Test()
         {
             MyBlogDbContext database = new MyBlogDbContext();
-            database.Database.CreateIfNotExists();
+            database.BlogUsers.ToList();
         }
     }
 }

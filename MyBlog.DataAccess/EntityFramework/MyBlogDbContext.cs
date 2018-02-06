@@ -1,4 +1,5 @@
-﻿using MyBlog.Entities;
+﻿using MyBlog.DataAccess.EntityFramework;
+using MyBlog.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,6 +21,11 @@ namespace MyBlog.DataAccess
         public DbSet<Liked> Likes { get; set; }
 
         public DbSet<Note> Notes { get; set; }
+
+        public MyBlogDbContext()
+        {
+            Database.SetInitializer(new MyInitializer());
+        }
 
     }
 }
