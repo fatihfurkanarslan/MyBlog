@@ -1,4 +1,6 @@
 ﻿using MyBlog.DataAccess;
+using MyBlog.DataAccess.EntityFramework;
+using MyBlog.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,11 @@ namespace MyBlog.Business
     {
         public Test()
         {
-            MyBlogDbContext database = new MyBlogDbContext();
-            database.BlogUsers.ToList();
+            //MyBlogDbContext database = new MyBlogDbContext();
+            //database.BlogUsers.ToList();
+
+            Repository<Category> catRepo = new Repository<Category>();
+            List<Category> cats = catRepo.GetList();
         }
     }
 }
