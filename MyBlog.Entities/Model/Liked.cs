@@ -16,14 +16,14 @@ namespace MyBlog.Entities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
-        public int NoteId { get; set; }
+        //public int NoteId { get; set; }
 
-        [ForeignKey("UserId")]
+        //[ForeignKey("UserId")]
         public BlogUser User { get; set; }
 
-        [ForeignKey("NoteId")]
+       // [ForeignKey("NoteId")]
         public Note Note { get; set; }
 
 

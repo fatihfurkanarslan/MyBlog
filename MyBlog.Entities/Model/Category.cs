@@ -17,9 +17,9 @@ namespace MyBlog.Entities
         [Required]
         public string Description { get; set; }
 
-        public int NoteId { get; set; }
+        //public int NoteId { get; set; }
 
-        [ForeignKey("NoteId")]
+        //[ForeignKey("NoteId")]
         public virtual List<Note> Notes { get; set; }
     }
 }

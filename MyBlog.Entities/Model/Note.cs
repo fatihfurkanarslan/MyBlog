@@ -21,21 +21,21 @@ namespace MyBlog.Entities
 
         public int likeCount { get; set; }
 
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
-        public int CommentId { get; set; }
+        //public int CommentId { get; set; }
 
-        public int LikeId { get; set; }
+        //public int LikeId { get; set; }
 
         public int CategoryId { get; set; }
 
-        [ForeignKey("UserId")]
+        //[ForeignKey("UserId")]
         public virtual BlogUser User { get; set; }
 
-        [ForeignKey("CommentId")]
+        //[ForeignKey("CommentId")]
         public virtual List<Comment> Comment { get; set; }
 
-        [ForeignKey("LikeId")]
+       // [ForeignKey("LikeId")]
         public virtual List<Liked> Like { get; set; }
 
         [ForeignKey("CategoryId")]

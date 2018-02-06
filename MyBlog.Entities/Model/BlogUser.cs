@@ -28,19 +28,19 @@ namespace MyBlog.Entities
         [Required]
         public bool IsAdmin { get; set; }
 
-        public int NoteId { get; set; }
+        //public int NoteId { get; set; }
 
-        public int CommentId { get; set; }
+        //public int CommentId { get; set; }
 
-        public int LikeId { get; set; }
+        //public int LikeId { get; set; }
 
-        [ForeignKey("NoteId")]
+       // [ForeignKey("NoteId")]
         public virtual List<Note> Notes { get; set; }
 
-        [ForeignKey("CommentId")]
+       // [ForeignKey("CommentId")]
         public virtual List<Comment> Comments { get; set; }
 
-        [ForeignKey("LikeId")]
+      //  [ForeignKey("LikeId")]
         public virtual List<Liked> Likes { get; set; }
 
     }
