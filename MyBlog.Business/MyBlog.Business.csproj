@@ -48,13 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryManager.cs" />
+    <Compile Include="NoteManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultsValidation\BLResult.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyBlog.Common\MyBlog.Common.csproj">
+      <Project>{04db32a2-beaa-440b-a076-3e88e5f9b2ae}</Project>
+      <Name>MyBlog.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyBlog.DataAccess\MyBlog.DataAccess.csproj">
       <Project>{f5d0d48b-94b6-4656-97c7-3bf5c08edf08}</Project>
       <Name>MyBlog.DataAccess</Name>

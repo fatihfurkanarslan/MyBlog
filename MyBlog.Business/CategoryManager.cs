@@ -11,13 +11,18 @@ namespace MyBlog.Business
     public class CategoryManager
     {
 
-        private Repository<Category> cat = new Repository<Category>();
+        Repository<Category> categoryRepo = new Repository<Category>();
 
-        public List<Category> GetCategories()
+        public List<Category> CategoryList()
         {
 
-            return cat.GetList();
+            return categoryRepo.GetList();
 
+        }
+
+        public Category CategoryById(int id)
+        {
+            return categoryRepo.Get(x => x.Id == id);
         }
 
     }

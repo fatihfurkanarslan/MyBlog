@@ -1,22 +1,24 @@
 ﻿@using MyBlog.Business
 @using MyBlog.Entities
 
+
 @{ 
 
     CategoryManager cm = new CategoryManager();
-    List<Category> categoriList = cm.GetCategories();
 
+    List<Category> categoriesList = cm.CategoryList();
 
 }
 
-<h1 class="my-4"><i class="fa fa-arrow-right"></i><a href="@Html.Action("Index", "Home")"></a>&nbsp;Categories</h1>
+
+<h1 class="my-4"><i class="fa fa-arrow-right"></i>&nbsp;Categories</h1>
 <div class="list-group">
 
-    @foreach (var cat in categoriList)
+    @foreach (var category in categoriesList)
     {
-        <a href="/Category/Select/@cat.Id" class="list-group-item"><i class="fa fa-arrow-right"></i>&nbsp;@cat.Title</a>
+        <a href="/Home/ByCategory/@category.Id" class="list-group-item"><i class="fa fa-arrow-right"></i>&nbsp;@category.Title</a>
     }
 
-    <a href="#" class="list-group-item"><i class="fa fa-arrow-right"></i>&nbsp;Category 1</a>
+ 
 
 </div>

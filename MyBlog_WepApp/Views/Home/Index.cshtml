@@ -1,25 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@using MyBlog.Entities
 
-<!-- Page Content -->
+@model List<Note>
+
+
+<br /><br />
 <div class="container">
-
     <div class="row">
-
-        <!--Categories gelecek partial olarak-->
         <div class="col-lg-3">
 
-           @Html.Partial("_PartialCategories")
 
+            @Html.Partial("_PartialCategories")
         </div>
-
-
         <!-- /.col-lg-3 -->
-
         <div class="col-lg-9">
-
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -47,180 +40,54 @@
                 </a>
             </div>
 
+            <!--Blogların olduğu foreach -->
             <div class="row">
                 <!--YAZILAR-->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
 
-                        <div class="card-footer">
+                @foreach (var note in Model)
+    {
 
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="@note.Title"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">@note.Title</a>
+                        </h4>
+                        <p class="card-text"></p>@if (string.IsNullOrEmpty(note.Content) == false && note.Content.Length > 100)
+    {
+                    <p>@note.Content.Substring(0, 50)</p>
+}
+else
+{
+                    <p>@note.Content</p>
+}
 
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
+                        <h6>
+                            <span class="">@note.ModifiedUsername</span><br />
+                            <span>@note.ModifiedOn.ToString("dd.mm.yy")</span>
+                        </h6>
 
+                        <p class="pull-left"><a href="#" class="btn-primary btn-sm"><span class="fa fa-chain">Continue..</span></a></p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="pull-right">
+                            <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        </div>
+                            <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
+                        </p>
+
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
-
-                        <div class="card-footer">
-
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
-
-                        <div class="card-footer">
-
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
-
-                        <div class="card-footer">
-
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
-
-                        <div class="card-footer">
-
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Sit Amet</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                            <h6>
-                                <span class="">Fatih Furkan Arslan</span><br />
-                                <span>01.02.2018</span>
-                            </h6>
-                        </div>
-
-                        <div class="card-footer">
-
-                            <p class="pull-right">
-                                <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                            </p>
-
-
-                        </div>
-                    </div>
-                </div>
+            </div>
+}
 
 
 
             </div>
             <!-- /.row -->
-
         </div>
         <!-- /.col-lg-9 -->
-
     </div>
     <!-- /.row -->
-
 </div>
-<!-- /.container -->
