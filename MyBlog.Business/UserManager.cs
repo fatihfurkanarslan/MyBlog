@@ -84,6 +84,7 @@ namespace MyBlog.Business
                 }
             }
 
+            MailHelper mail = new MailHelper();
 
             return result;
 
