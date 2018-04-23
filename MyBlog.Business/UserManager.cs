@@ -81,10 +81,17 @@ namespace MyBlog.Business
                 if (check > 0)
                 {
                     result.Entity = userRepo.Get(x => x.Username == user.Username);
+
+                    
+                    string siteUri = ConfigHelper.Get<string>("SiteRootUri");
+                    string activeUri = $"{siteUri}/Home/UserActivate/{result.Entity.ActivateGuid}";
+                    string body = $"Merhaba {result.Entity.Username} {result.Entity.Surname} <br><br> Hesabınızı" +
+                        $"aktifleştirmek için <a href='{activeUri}' target='_blank'>tıklayınız</a>.";
+
+                    MailHelper.SendMail(body, result.Entity.Email, "Hesap Aktifleştirme");
+
                 }
             }
-
-            MailHelper mail = new MailHelper();
 
             return result;
 
