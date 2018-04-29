@@ -21,7 +21,9 @@ namespace MyBlog_WepApp
 
                 return user.Username;
             }
-            return null;
+            //burda kullanıcı ilk kayıt yaparken system tarafından kaydedilmek zorunda çünkü insert
+            //methodunda kayıt yapılırken username zorunlu alan olarak tutuldu. ve zorunlu alan null olamaz.
+            return "system";
         }
 
     }

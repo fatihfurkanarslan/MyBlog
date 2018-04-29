@@ -105,8 +105,6 @@ namespace MyBlog_WepApp.Controllers
         }
 
     
-
-
         public ActionResult Register()
         {
 
@@ -141,6 +139,40 @@ namespace MyBlog_WepApp.Controllers
         public ActionResult RegisterApproved()
         {
             return View();
+        }
+
+        public ActionResult UserActivate(Guid activate_guid)
+        {
+            UserManager user = new UserManager();
+            BLResult<BlogUser> result = user.ActiivateUser(activate_guid);
+
+            if (result.Errors.Count > 0)
+            {
+                TempData["errors"] = result.Errors;
+                return RedirectToAction("UserActivateCancel");
+            }
+
+            return RedirectToAction("UserActivateOk");
+        }
+
+        public ActionResult UserActivateOk()
+        {
+
+
+
+            return View();
+        }
+
+        public ActionResult UserActivateCancel()
+        {
+            List<string> errors = new List<string>();
+
+            if (TempData["errors"] != null)
+            {
+                errors = TempData["errors"] as List<string>;
+            }
+
+            return View(errors);
         }
     }
 

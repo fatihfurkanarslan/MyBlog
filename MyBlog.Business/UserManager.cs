@@ -97,7 +97,33 @@ namespace MyBlog.Business
 
         }
 
-        
+        public BLResult<BlogUser> ActiivateUser(Guid activateId)
+        {
+            BLResult<BlogUser> result = new BLResult<BlogUser>();
+
+            result.Entity = userRepo.Get(x => x.ActivateGuid == activateId);
+
+            if (result.Entity != null)
+            {
+                if (result.Entity.IsActive)
+                {
+                    //hatalara active edilmiş kullanıcı hatası eklenecek..
+                    result.Errors.Add("The user is already activeted.");
+                    return result;
+                }
+
+                result.Entity.IsActive = true;
+                userRepo.Update(result.Entity);
+
+            }
+            else
+            {
+                result.Errors.Add("No active users found.");
+            }
+
+            
+            return result;
+        }
 
     }
 }
