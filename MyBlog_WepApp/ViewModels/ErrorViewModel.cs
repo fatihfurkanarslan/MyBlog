@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MyEvernote.WebApp.ViewModels
+namespace MyBlog_WepApp.ViewModels
 {
     public class ErrorViewModel : NotifyViewModelBase<string>
     {
