@@ -57,6 +57,44 @@ namespace MyBlog_WepApp.Controllers
             return View("Index", notesPopular);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult ShowProfile()
+        {
+            BlogUser currentUser = null;
+            currentUser = Session["login"] as BlogUser;
+
+            UserManager usermanager = new UserManager();
+            BLResult<BlogUser> result = usermanager.GetUserById(currentUser.Id);
+
+            if (result.Errors.Count > 0)
+            {
+
+            }
+
+            return View(result.Entity);
+        }
+
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(BlogUser user)
+        {
+            return View();
+        }
+
+        public ActionResult RemoveProfile()
+        {
+            return View();
+        }
+
+
         public ActionResult Login()
         {
 

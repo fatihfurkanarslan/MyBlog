@@ -111,6 +111,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\StandartUser.png" />
     <Content Include="index.html" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -165,6 +166,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\InfoViewModel.cs" />
+    <Compile Include="ViewModels\NotifyViewModelBase.cs" />
+    <Compile Include="ViewModels\OkViewModel.cs" />
+    <Compile Include="ViewModels\WarningViewModel.cs" />
     <Compile Include="WebCommon.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +197,8 @@
     <Content Include="Views\Home\UserActivate.cshtml" />
     <Content Include="Views\Home\UserActivateOk.cshtml" />
     <Content Include="Views\Home\UserActivateCancel.cshtml" />
+    <Content Include="Views\Home\ShowProfile.cshtml" />
+    <Content Include="Views\Shared\Ok.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

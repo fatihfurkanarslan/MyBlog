@@ -28,13 +28,16 @@ namespace MyBlog.Entities
         [Required]
         public bool IsAdmin { get; set; }
 
+        [StringLength(30)]
+        public string UserImageFileName { get; set; }
+
         //public int NoteId { get; set; }
 
         //public int CommentId { get; set; }
 
         //public int LikeId { get; set; }
 
-       // [ForeignKey("NoteId")]
+        // [ForeignKey("NoteId")]
         public virtual List<Note> Notes { get; set; }
 
        // [ForeignKey("CommentId")]

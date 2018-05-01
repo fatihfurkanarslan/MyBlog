@@ -97,6 +97,20 @@ namespace MyBlog.Business
 
         }
 
+        public BLResult<BlogUser> GetUserById(int id)
+        {
+            BLResult<BlogUser> result = new BLResult<BlogUser>();
+            result.Entity = userRepo.Get(x => x.Id == id);
+
+            if (result.Entity == null)
+            {
+                result.Errors.Add("Kullanıcı Bulunamadı.");
+            }
+
+
+            return result;
+        }
+
         public BLResult<BlogUser> ActiivateUser(Guid activateId)
         {
             BLResult<BlogUser> result = new BLResult<BlogUser>();
