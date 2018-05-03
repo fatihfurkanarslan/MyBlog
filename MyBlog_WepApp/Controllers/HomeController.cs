@@ -2,6 +2,7 @@
 using MyBlog.Business.ResultsValidation;
 using MyBlog.Entities;
 using MyBlog.Entities.UIViewModel;
+using MyBlog_WepApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace MyBlog_WepApp.Controllers
             else
             {
 
-                //sadece aynı controllerin içindeyken yönlendirme yapabiliyoruz.. !!
+                //sadece aynı controllerlarin içindeyken yönlendirme yapabiliyoruz.. !!
                 return View("Index", categories.Notes);
             }
 
@@ -73,6 +74,13 @@ namespace MyBlog_WepApp.Controllers
             if (result.Errors.Count > 0)
             {
 
+                ErrorViewModel errorModel = new ErrorViewModel()
+                {
+                    Title = "Invalid Profile Update Operation",
+                };
+                errorModel.Items = result.Errors;
+
+                return View("Error", errorModel);
             }
 
             return View(result.Entity);
@@ -93,7 +101,6 @@ namespace MyBlog_WepApp.Controllers
         {
             return View();
         }
-
 
         public ActionResult Login()
         {
@@ -133,7 +140,6 @@ namespace MyBlog_WepApp.Controllers
             return View(model);
         }
 
-
         public ActionResult LogOff()
         {
 
@@ -142,7 +148,6 @@ namespace MyBlog_WepApp.Controllers
             return RedirectToAction("Index");
         }
 
-    
         public ActionResult Register()
         {
 
@@ -166,17 +171,17 @@ namespace MyBlog_WepApp.Controllers
                     return View(model);
                 }
 
+                OkViewModel okModel = new OkViewModel() {
+                    Title = "Registration Okay",
+                    Header = "Please check your email box to activate your account."
+                };
 
-                return RedirectToAction("RegisterApproved");
+
+                return View("Ok", okModel);
 
             }
 
             return View(model);
-        }
-
-        public ActionResult RegisterApproved()
-        {
-            return View();
         }
 
         public ActionResult UserActivate(Guid activate_guid)
@@ -186,32 +191,38 @@ namespace MyBlog_WepApp.Controllers
 
             if (result.Errors.Count > 0)
             {
-                TempData["errors"] = result.Errors;
-                return RedirectToAction("UserActivateCancel");
+
+                ErrorViewModel errorModel = new ErrorViewModel()
+                {
+                    Title = "Invalid Registration",                    
+                };
+                errorModel.Items = result.Errors;
+
+                return View("Error", errorModel);
             }
 
-            return RedirectToAction("UserActivateOk");
+            OkViewModel okModel = new OkViewModel() {
+                Title = "Registration Susccessfull.",
+                RedirectingUrl = "/Home/Login"
+            };
+
+            okModel.Items.Add("Please activate your account via activate mail. Check your e-mail box.");
+
+            return View("Ok", okModel);
         }
 
-        public ActionResult UserActivateOk()
-        {
+        //bu method yerine artık generic error sayfası kullanılacak
+        //public ActionResult UserActivateCancel()
+        //{
+        //    List<string> errors = new List<string>();
 
+        //    if (TempData["errors"] != null)
+        //    {
+        //        errors = TempData["errors"] as List<string>;
+        //    }
 
-
-            return View();
-        }
-
-        public ActionResult UserActivateCancel()
-        {
-            List<string> errors = new List<string>();
-
-            if (TempData["errors"] != null)
-            {
-                errors = TempData["errors"] as List<string>;
-            }
-
-            return View(errors);
-        }
+        //    return View(errors);
+        //}
     }
 
 }

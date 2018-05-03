@@ -184,7 +184,6 @@
     <Content Include="Views\Shared\_PartialCategories.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\RegisterApproved.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -196,9 +195,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\UserActivate.cshtml" />
     <Content Include="Views\Home\UserActivateOk.cshtml" />
-    <Content Include="Views\Home\UserActivateCancel.cshtml" />
     <Content Include="Views\Home\ShowProfile.cshtml" />
     <Content Include="Views\Shared\Ok.cshtml" />
+    <Content Include="Views\Shared\Warning.cshtml" />
+    <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
