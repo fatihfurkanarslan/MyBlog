@@ -139,5 +139,33 @@ namespace MyBlog.Business
             return result;
         }
 
+        public BLResult<BlogUser> UpdateProfile(BlogUser data)
+        {
+            //TODO
+            //burda zorunlu olanları kontrol edip çakışmayı engellemek gerekebilir..
+
+            BlogUser user = userRepo.Get(x => x.Username == data.Username );
+            BLResult<BlogUser> result = new BLResult<BlogUser>();
+
+            if (user != null && user.Id != data.Id)
+            {
+                result.Errors.Add("Kullanıcı Update edilemedi..");
+                return result;
+            }
+
+            result.Entity = userRepo.Get(x => x.Id == data.Id);
+            result.Entity.Email = data.Email;
+            result.Entity.Name = data.Name;
+            result.Entity.Surname = data.Surname;
+            result.Entity.Username = data.Username;
+            result.Entity.Password = data.Password;
+
+            //TODO
+            //burda da resmi alıp almadığımzı kontrol etmemiz gerekebilir. 
+            result.Entity.UserImageFileName = data.UserImageFileName;
+
+
+            return result;
+        }
     }
 }

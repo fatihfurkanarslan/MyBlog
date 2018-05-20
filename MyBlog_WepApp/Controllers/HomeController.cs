@@ -88,12 +88,63 @@ namespace MyBlog_WepApp.Controllers
 
         public ActionResult EditProfile()
         {
-            return View();
+            BlogUser currentUser = null;
+            currentUser = Session["login"] as BlogUser;
+
+            UserManager usermanager = new UserManager();
+            BLResult<BlogUser> result = usermanager.GetUserById(currentUser.Id);
+
+            if (result.Errors.Count > 0)
+            {
+
+                ErrorViewModel errorModel = new ErrorViewModel()
+                {
+                    Title = "Invalid Profile Update Operation",
+                };
+                errorModel.Items = result.Errors;
+
+                return View("Error", errorModel);
+            }
+
+            return View(result.Entity);
         }
 
         [HttpPost]
-        public ActionResult EditProfile(BlogUser user)
+        public ActionResult EditProfile(BlogUser user, HttpPostedFileBase ProfileImage)
         {
+            if (ProfileImage != null
+                && (ProfileImage.ContentType == "image/jpeg"
+                || ProfileImage.ContentType == "image/jpg"
+                || ProfileImage.ContentType == "image/jpeg"))
+            {
+                string filename = $"user_{user.Id}.{ProfileImage.ContentType.Split('/')[1]}";
+
+                ProfileImage.SaveAs(Server.MapPath($"~/images/{filename}"));
+                user.UserImageFileName = filename;
+            }
+
+            UserManager usermanager = new UserManager();
+            BLResult<BlogUser> result = usermanager.UpdateProfile(user);
+
+            if (result.Errors.Count > 0)
+            {
+
+                ErrorViewModel errorModel = new ErrorViewModel()
+                {
+                    Title = "Profil Güncelleme Başarısız",
+                    RedirectingUrl = "/Home/EditProfile"
+                };
+                errorModel.Items = result.Errors;
+
+                return View("Error", errorModel);
+            }
+
+            //kullanıcı güncellendiği için sessionda güncellendi..
+            Session["login"] = result.Entity;
+
+            return RedirectToAction("ShowProfile");
+
+
             return View();
         }
 
