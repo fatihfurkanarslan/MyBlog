@@ -54,7 +54,9 @@
     <Compile Include="Model\Liked.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIViewModel\CategoryViewModel.cs" />
     <Compile Include="UIViewModel\LoginViewModel.cs" />
+    <Compile Include="UIViewModel\NoteViewModel.cs" />
     <Compile Include="UIViewModel\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

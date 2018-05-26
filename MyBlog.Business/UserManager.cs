@@ -18,9 +18,6 @@ namespace MyBlog.Business
 
         public List<BlogUser> GetAllUserList()
         {
-
-
-
             return userRepo.GetList();
         }
 
@@ -44,6 +41,7 @@ namespace MyBlog.Business
 
             return result;
         }
+
 
         public BLResult<BlogUser> RegisterUser(RegisterViewModel user)
         {

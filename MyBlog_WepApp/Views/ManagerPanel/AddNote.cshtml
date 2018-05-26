@@ -1,0 +1,113 @@
+﻿@using MyBlog.Entities.UIViewModel
+@model NoteViewModel
+
+
+@{
+    ViewBag.Title = "AddNote";
+}
+
+
+<div class="offset-1">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="container">
+            <form class="form-horizontal" role="form" method="POST" action="/register">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h2>Add A New Note</h2>
+                        <hr>
+                    </div>
+                </div>
+
+                @Html.ValidationSummary()
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="name">Title</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "user name" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="email">Content</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                @Html.TextBoxFor(x => x.Content, new { @class = "form-control", placeholder = "email address" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put e-mail validation error messages here -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @*//TODO burda category bir dropdownlistten seçtirmeliyiz*@
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                                @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control", placeholder = "password" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+           
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Add Note</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+
+
+
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $(footer).hide();
+
+
+    });
+
+</script>

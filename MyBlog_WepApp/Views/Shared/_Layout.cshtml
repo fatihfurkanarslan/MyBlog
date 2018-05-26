@@ -65,12 +65,22 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                @*burda yönetim paneli dropdown listi var*@
                 @if (user != null)
                 {
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manager Panel
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/ManagerPanel/AddNote">Add Note</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">My Notes</a>
+                            <a class="dropdown-item" href="#">My Likes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ManagerPanel/AddCategory">Add a Category</a>
+                            <a class="dropdown-item" href="/ManagerPanel/ListCategories">Categories</a>
+                        </div>
                     </li>
                 }
 
@@ -107,8 +117,16 @@
                     }
                     else
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Home/ShowProfile"><i class="fa fa-user"></i>&nbsp; @user.Username</a>
+
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @user.Username
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/Home/ShowProfile">Show Profile</a>
+                                <a class="dropdown-item" href="/Home/EditProfile">Edit Profile</a>
+
+                            </div>
                         </li>
 
                         <li class="nav-item">
