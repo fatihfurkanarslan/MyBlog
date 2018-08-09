@@ -18,13 +18,12 @@ namespace MyBlog_WepApp
 
             var result = WebCache.Get("cache-categories");
 
-            if (result == 0)
+            if (result == null)
             {
                 result = catManager.CategoryList();
 
-                result = WebCache.Set("cache - categories", result, 20, true);
+                WebCache.Set("cache-categories", result, 20, true);
             }
-
 
             return result;
         }

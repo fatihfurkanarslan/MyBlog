@@ -48,7 +48,7 @@ namespace MyBlog_WepApp.Controllers
         {
             List<Category> list = CacheHelper.GetFromCategoriesCache();
 
-            return View(list);
+            return View();
         }
 
 
