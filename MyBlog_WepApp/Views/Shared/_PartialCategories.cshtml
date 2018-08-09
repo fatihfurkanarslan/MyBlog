@@ -4,9 +4,8 @@
 
 @{ 
 
-    CategoryManager cm = new CategoryManager();
 
-    List<Category> categoriesList = cm.CategoryList();
+    List<Category> categoriesList = CacheHelper.GetFromCategoriesCache();
 
 }
 

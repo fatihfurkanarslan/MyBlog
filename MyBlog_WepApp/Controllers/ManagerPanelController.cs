@@ -46,7 +46,7 @@ namespace MyBlog_WepApp.Controllers
 
         public ActionResult ListCategories()
         {
-            List<Category> list = catManager.CategoryList();
+            List<Category> list = CacheHelper.GetFromCategoriesCache();
 
             return View(list);
         }
