@@ -27,6 +27,32 @@ namespace MyBlog_WepApp
 
             return result;
         }
+   
+
+        public static List<Note> GetFromNotesCache()
+        {
+            var result = WebCache.Get("cache-notes");
+
+            if (result == null)
+            {
+
+                NoteManager noteManager = new NoteManager();
+                result = noteManager.GetAllNotesList();
+
+                
+            }
+
+            return result;
+        }
+
+        //here will be added yorum cache mechanizm
+
+        public static void Remove(string key)
+        {
+
+            WebCache.Remove(key);
+
+        }
 
     }
 }
