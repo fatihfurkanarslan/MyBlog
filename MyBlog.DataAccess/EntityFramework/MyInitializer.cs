@@ -112,7 +112,9 @@ namespace MyBlog.DataAccess.EntityFramework
                             User = (k % 2 == 0) ? admin1 : normaluser1,
                             CreatedOn = FakeData.DateTimeData.GetDatetime(DateTime.Now.AddYears(-1), DateTime.Now),
                             ModifiedOn = DateTime.Now,
-                            ModifiedUsername = $"comment{i}"
+                            ModifiedUsername = $"comment{i}",
+                            Note = note
+
                         };
 
                         context.Comments.Add(comment);

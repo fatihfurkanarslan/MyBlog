@@ -1,0 +1,49 @@
+﻿@using MyBlog.Entities
+@using MyBlog.Common
+@model List<Comment>
+
+@{
+
+
+    BlogUser user = Session["login"] as BlogUser;
+
+}
+
+<div>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="media">
+            <div class="media-left media-top">
+                <div class="media-object">
+                    <span class="glyphicon glyphicon-comment"></span>
+                </div>
+            </div>
+            <div class="media-body">
+                <div>
+                    <span class="col-md-10" id="comment_text_@item.Id" contenteditable="false">
+                        @item.Text
+                    </span>
+                    @if (user != null && user.Id == item.User.Id)
+                    {
+                        <span class="col-md-2 text-right">
+                            <button type="button" class="btn btn-warning btn-xs" data-edit-mode="false">
+                                <span class="glyphicon glyphicon-edit">Update</span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs">
+                                <span class="glyphicon glyphicon-trash">Delete</span>
+                            </button>
+                        </span>
+                    }
+                    <small class="col-md-12 text-right">
+                        <span class="glyphicon glyphicon-time"></span> @item.ModifiedOn &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-user"></span> @item.User.Username
+                    </small>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

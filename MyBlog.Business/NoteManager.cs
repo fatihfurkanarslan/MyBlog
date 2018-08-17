@@ -57,5 +57,12 @@ namespace MyBlog.Business
             return noteRepo.FindList(x => x.likeCount > 5);
         }
 
+        public Note GetNotebyId(int id)
+        {
+
+           return noteRepo.Get(x => x.Id == id);
+
+        }
+
     }
 }

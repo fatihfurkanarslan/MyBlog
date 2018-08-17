@@ -207,6 +207,7 @@
     <Content Include="Views\ManagerPanel\AddNote.cshtml" />
     <Content Include="Views\ManagerPanel\ListCategories.cshtml" />
     <Content Include="Views\ManagerPanel\AddCategory.cshtml" />
+    <Content Include="Views\Shared\_PartialComments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

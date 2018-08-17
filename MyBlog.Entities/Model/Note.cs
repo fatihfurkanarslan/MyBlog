@@ -38,14 +38,14 @@ namespace MyBlog.Entities
        // [ForeignKey("LikeId")]
         public virtual List<Liked> Like { get; set; }
 
-        [ForeignKey("CategoryId")]
+        //[ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
-        //public Note()
-        //{
-        //    Like = new List<Liked>();
-        //    Comment = new List<Comment>();
+        public Note()
+        {
+            Like = new List<Liked>();
+            Comment = new List<Comment>();
 
-        //}
+        }
     }
 }

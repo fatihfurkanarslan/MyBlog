@@ -45,42 +45,42 @@
                 <!--YAZILAR-->
 
                 @foreach (var note in Model)
-    {
+                {
 
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="@note.Title"></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">@note.Title</a>
-                        </h4>
-                        <p class="card-text"></p>@if (string.IsNullOrEmpty(note.Content) == false && note.Content.Length > 100)
-    {
-                    <p>@note.Content.Substring(0, 50)</p>
-}
-else
-{
-                    <p>@note.Content</p>
-}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="@note.Title"></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@note.Title</a>
+                                </h4>
+                                <p class="card-text"></p>@if (string.IsNullOrEmpty(note.Content) == false && note.Content.Length > 100)
+                                {
+                                    <p>@note.Content.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                    <p>@note.Content</p>
+                                }
 
-                        <h6>
-                            <span class="">@note.ModifiedUsername</span><br />
-                            <span>@note.ModifiedOn.ToString("dd.mm.yy")</span>
-                        </h6>
+                                <h6>
+                                    <span class="">@note.ModifiedUsername</span><br />
+                                    <span>@note.ModifiedOn.ToString("dd.mm.yy")</span>
+                                </h6>
 
-                        <p class="pull-left"><a href="#" class="btn-primary btn-sm"><span class="fa fa-chain">Continue..</span></a></p>
+                                <p class="pull-left"><a href="#" class="btn-primary btn-sm"><span class="fa fa-chain">Continue..</span></a></p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="pull-right">
+                                    <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <!-- bootstrap.popup burda data-togle ve data-target ile oluşturuldu.. -->
+                                    <button class="btn btn-primary btn-sm" type="submit" data-toggle="modal" data-target="#modal_comment" data-note-id="@note.Id"><span>Yorumlar</span></button>
+                                </p>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <p class="pull-right">
-                            <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                            <button class="btn btn-primary btn-sm" type="submit"><span>Yorumlar</span></button>
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-}
+                }
 
 
 
@@ -91,3 +91,23 @@ else
     </div>
     <!-- /.row -->
 </div>
+
+
+@Bootstrap.ModalPopup(id: "modal_comment", title: "Comments")
+
+<script>
+
+    $(function () {
+
+        $('#modal_comment').on('shown.bs.modal', function (e) {
+
+            var buton = $(e.relatedTarget);
+            var noteid = buton.data("note-id");
+
+            $('#modal_comment_body').load("/Home/CommentList/" + noteid);
+        
+           // console.log("test :" + noteid);
+        })
+    });
+
+</script>

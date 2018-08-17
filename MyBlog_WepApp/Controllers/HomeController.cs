@@ -25,7 +25,6 @@ namespace MyBlog_WepApp.Controllers
 
             return View(noteList);
         }
-
         //Indexe kategori notlarının paslamasını yapıyoruz...
         public ActionResult ByCategory(int id)
         {
@@ -260,6 +259,16 @@ namespace MyBlog_WepApp.Controllers
             okModel.Items.Add("Please activate your account via activate mail. Check your e-mail box.");
 
             return View("Ok", okModel);
+        }
+
+        public ActionResult CommentList(int id)
+        {
+            //id bossa/(id boş gelebilir mi???) ? güvenlik önlemi nullable yapılabilir..
+
+            NoteManager noteManager = new NoteManager();
+            Note note = noteManager.GetNotebyId(id);
+            
+            return PartialView("_PartialComments", note.Comment);
         }
 
         //bu method yerine artık generic error sayfası kullanılacak

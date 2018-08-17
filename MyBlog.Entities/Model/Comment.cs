@@ -14,10 +14,6 @@ namespace MyBlog.Entities
         [Required]
         public string Text { get; set; }
 
-        //public int NoteId { get; set; }
-
-        //public int UserId { get; set; }
-
         //[ForeignKey("NoteId")]
         public virtual Note Note { get; set; }
 

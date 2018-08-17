@@ -39,7 +39,24 @@ namespace MyBlog_WepApp
                 NoteManager noteManager = new NoteManager();
                 result = noteManager.GetAllNotesList();
 
-                
+                WebCache.Set("cache-notes", result, 20, true);
+            }
+
+            return result;
+        }
+
+        public static List<Comment> GetFromCommentsCache(Note note)
+        {
+            var result = WebCache.Get("cache-comments");
+            CommentManager commentManager = new CommentManager();
+
+            if (result == null)
+            {
+                result = commentManager.GetCommentList(note);
+
+                WebCache.Set("cache-comment", result, 20, true);
+
+
             }
 
             return result;
