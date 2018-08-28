@@ -226,7 +226,6 @@ namespace MyBlog_WepApp.Controllers
                     Header = "Please check your email box to activate your account."
                 };
 
-
                 return View("Ok", okModel);
 
             }
