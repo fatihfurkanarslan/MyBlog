@@ -91,6 +91,7 @@
 </div>
 
 
+
 @Bootstrap.ModalPopup(id: "modal_comment", title: "Comments")
 
 <script>
@@ -101,6 +102,7 @@
 
             var buton = $(e.relatedTarget);
             var noteid = buton.data("note-id");
+
 
             $('#modal_comment_body').load("/Home/CommentList/" + noteid);
         

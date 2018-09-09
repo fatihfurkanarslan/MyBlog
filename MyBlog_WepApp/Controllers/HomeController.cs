@@ -262,12 +262,49 @@ namespace MyBlog_WepApp.Controllers
 
         public ActionResult CommentList(int id)
         {
-            //id bossa/(id boş gelebilir mi???) ? güvenlik önlemi nullable yapılabilir..
+            //id bossa/(id boş gelebilir mi???) ? güvenlik için nullable yapılabilir..
 
             NoteManager noteManager = new NoteManager();
             Note note = noteManager.GetNotebyId(id);
             
             return PartialView("_PartialComments", note.Comment);
+        }
+
+        [HttpPost]
+        public JsonResult CommentUpdate(int id, string text)
+        {
+            CommentManager commentManager = new CommentManager();
+
+            Comment comment = commentManager.Find(id);
+
+            comment.Text = text;
+
+            commentManager.Update(comment);
+
+            return Json(new {result = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CommentDelete(int id)
+        {
+            CommentManager commentManager = new CommentManager();
+
+            Comment comment = commentManager.Find(id);
+     
+            commentManager.Delete(comment);
+
+            return Json(new { result = true}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult MakeComment(string text, int noteid)
+        {
+            CommentManager commentManager = new CommentManager();
+
+            BlogUser user = Session["login"] as BlogUser;
+
+            commentManager.AddComment(text, noteid, user);
+
+            return Json(new { result = true}, JsonRequestBehavior.AllowGet);
         }
 
         //bu method yerine artık generic error sayfası kullanılacak

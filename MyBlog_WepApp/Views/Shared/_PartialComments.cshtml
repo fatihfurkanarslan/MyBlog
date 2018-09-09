@@ -1,40 +1,56 @@
-﻿@using MyBlog.Entities
+﻿
+@using MyBlog.Entities
 @using MyBlog.Common
 @model List<Comment>
 
 @{
+    /**/
 
     BlogUser user = Session["login"] as BlogUser;
 
 }
+<script src="~/Scripts/comments.js"></script>
+<script>
 
-<div>
+    var noteidm = -1;
 
-    @foreach (var item in Model)
-    {
+</script>
 
+<script src="~/Scripts/comments.js"></script>
+
+@foreach (var item in Model)
+{
+
+    <div class="row">
         <div class="media">
             <div class="media-left media-top">
                 <div class="media-object">
                     <span class="glyphicon glyphicon-comment"></span>
                 </div>
             </div>
-            <div class="media-body">
+            <div class="media-body" id="modelCommentBodyId" data-target="comment_modal" data-note-id="@item.Note.Id">
                 <div>
+
+                    <script>noteidm=@item.Note.Id</script>
+
                     <span class="col-md-10" id="comment_text_@item.Id" contenteditable="false">
+
                         @item.Text
+
                     </span>
                     @if (user != null && user.Id == item.User.Id)
                     {
+
                         <span class="col-md-2 text-right">
-                            <button id="update" type="button" class="btn btn-warning btn-xs" data-edit-mode="false">
-                                <span class="glyphicon glyphicon-edit">Update</span>
+                            <button id="update" type="button" class="btn btn-warning btn-xs" data-edit-mode="false" onclick="DoComment(this, 'editted', @item.Id, '#comment_text_@item.Id', @item.Note.Id)">
+                                <span class="fa fa-edit"></span>
                             </button>
-                            <button id="delete" type="button" class="btn btn-danger btn-xs">
-                                <span class="glyphicon glyphicon-trash">Delete</span>
+                            <button id="delete" type="button" class="btn btn-danger btn-xs" onclick="DoComment(this, 'deleted', @item.Id, '', @item.Note.Id)">
+                                <span class="fa fa-trash"></span>
                             </button>
                         </span>
                     }
+                    <br />
                     <small class="col-md-12 text-right">
                         <span class="glyphicon glyphicon-time"></span> @item.ModifiedOn &nbsp;&nbsp;&nbsp;&nbsp;
                         <span class="glyphicon glyphicon-user"></span> @item.User.Username
@@ -42,11 +58,32 @@
                 </div>
             </div>
         </div>
-    }
+
+
+    </div>
+
+    <br /><br />
+
+
+
+}
+
+<div class="row">
+
+    <div class="input-group">
+        <input type="text" id="commentfield" class="form-control" placeholder="Your New Comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="makeacomment" onclick="DoComment(this, 'makecomment','' , '', '')">Make a Comment</button>
+        </div>
+    </div>
+
 </div>
+
 
 <script>
 
-    $(#)
-
 </script>
+
+
+
+<!--yorum için gerekli olan input field ve button-->
