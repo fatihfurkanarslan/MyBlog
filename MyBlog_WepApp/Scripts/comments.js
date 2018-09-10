@@ -83,14 +83,18 @@ function DoComment(btn, e, commentId, commentTextId, noteid) {
             url: "/Home/MakeComment?text=" + commentText + "&noteid=" + noteidm
         }).done(function (data) {
 
+            alert("datamız " + data.result);
+            if (data.result) {
+                $('#modal_comment_body').load("/Home/CommentList/" + noteid);
+            } else {
+                alert("Yorum Yapılamadı..");
+            }
             //burda ki commenttextid aslında yukardaki onclick'ta noteid olarak gelmesi sağlandı..
-            $('#modal_comment_body').load("/Home/CommentList/" + noteid);
+     
 
-        }.fail(function () {
-
-            alert("Yorum Silinemedi..");
-
-        }));
+        }).fail(function () {
+            alert("Yorum Yapılamadı..");
+        });
 
     }
 
