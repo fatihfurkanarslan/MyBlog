@@ -47,7 +47,7 @@
                 @foreach (var note in Model)
                 {
 
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-lg-4 col-md-6 mb-4" data-note-id="@note.Id">
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="@note.Title"></a>
                             <div class="card-body">
@@ -72,7 +72,11 @@
                             </div>
                             <div class="card-footer">
                                 <p class="pull-right">
-                                    <button class="btn btn-primary btn-sm" type="submit"><span>15</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-primary btn-sm" type="submit" data-liked="false">
+                                        <div>
+                                            <span class="fa fa-star-o">15</span>
+                                        </div>
+                                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <!-- bootstrap.popup burda data-togle ve data-target ile oluşturuldu.. -->
                                     <button class="btn btn-primary btn-sm" type="submit" data-toggle="modal" data-target="#modal_comment" data-note-id="@note.Id"><span>Yorumlar</span></button>
                                 </p>
@@ -91,7 +95,6 @@
 </div>
 
 
-
 @Bootstrap.ModalPopup(id: "modal_comment", title: "Comments")
 
 <script>
@@ -103,11 +106,52 @@
             var buton = $(e.relatedTarget);
             var noteid = buton.data("note-id");
 
-
             $('#modal_comment_body').load("/Home/CommentList/" + noteid);
-        
-           // console.log("test :" + noteid);
-        })
+
+            // console.log("test :" + noteid);
+        });
+
+        var noteids = [];
+
+        $("div[data-note-id]").each(function (i, e) {
+
+            noteids.push($(e).data("note-id"));
+
+        });
+        console.log(noteids);
+
+        $.ajax({
+            method: "POST",
+            url: "/Home/GetLiked",
+            data: { ids: noteids }
+
+        }).done(function (data) {
+
+            if (data.result != null) {
+
+                console.log("gelen--> " + data.result);
+
+                for (var i = 0; i < data.result.length; i++) {
+
+                    var id = data.result[i];
+                    var likedNote = $("div[data-note-id=" + id + "]");
+                    var btn = likedNote.find("button[data-liked]");
+                    var div = btn.children().first();
+                    var span = div.children().first();
+
+                    btn.data("liked", true);
+                    span.removeClass("fa fa-star-o");
+                    span.addClass("fa fa-star");
+                }
+
+            }
+
+        }).fail(function () {
+
+            alert("sunucu bağlantısı kurulamadı..");
+
+        });
+
     });
 
 </script>

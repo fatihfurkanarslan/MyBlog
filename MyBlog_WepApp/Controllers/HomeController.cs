@@ -307,6 +307,28 @@ namespace MyBlog_WepApp.Controllers
             return Json(new { result = true}, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult GetLiked(int [] ids)
+        {
+            LikeManager likeManager = new LikeManager();
+
+            BlogUser user = Session["login"] as BlogUser;
+
+            //burada eğer kullanıcı login olmadıysa buna göre bir düzenleme yapılmalı 
+            //!!!!!!!!!!!!!!!!!!!
+            if (user != null)
+            {
+                List<int> likedNoteIds = likeManager.GetLikes(user.Id, ids);
+
+                return Json(new { result = likedNoteIds }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
+            }
+   
+        }
+
         //bu method yerine artık generic error sayfası kullanılacak
         //public ActionResult UserActivateCancel()
         //{
