@@ -13,6 +13,17 @@ namespace MyBlog.Business
 
         Repository<Liked> likeRepo = new Repository<Liked>();
 
+
+        public int GetLike(int likeid)
+        {
+
+            Liked like = likeRepo.Get(x => x.Id == likeid);
+
+            int value = like.Id;
+
+            return value;
+        }
+
         public List<int> GetLikes(int userId, int[] likeIds)
         {
 
@@ -21,6 +32,15 @@ namespace MyBlog.Business
 
             return likes;
         }
+
+        public int GetLikeCount(Liked like)
+        {
+            int count = likeRepo.Update(like);
+
+            return count;
+        }
+
+
 
 
     }

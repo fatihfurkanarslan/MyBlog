@@ -72,10 +72,10 @@
                             </div>
                             <div class="card-footer">
                                 <p class="pull-right">
-                                    <button class="btn btn-primary btn-sm" type="submit" data-liked="false">
-                                        <div>
-                                            <span class="fa fa-star-o">15</span>
-                                        </div>
+                                    <button id="likeButton" class="btn btn-primary btn-sm" type="submit" data-liked="false" >
+                                       
+                                            <span data-note-id="@note.Id" class="fa fa-star-o">@note.likeCount</span>
+                                      
                                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <!-- bootstrap.popup burda data-togle ve data-target ile oluşturuldu.. -->
                                     <button class="btn btn-primary btn-sm" type="submit" data-toggle="modal" data-target="#modal_comment" data-note-id="@note.Id"><span>Yorumlar</span></button>
@@ -136,8 +136,7 @@
                     var id = data.result[i];
                     var likedNote = $("div[data-note-id=" + id + "]");
                     var btn = likedNote.find("button[data-liked]");
-                    var div = btn.children().first();
-                    var span = div.children().first();
+                    var span = btn.children().first();        
 
                     btn.data("liked", true);
                     span.removeClass("fa fa-star-o");
@@ -150,8 +149,116 @@
 
             alert("sunucu bağlantısı kurulamadı..");
 
+            });
+
+
+        $("button[data-liked]").click(function () {
+
+            var likeornot = $(this).data("liked");
+
+            var span = $(this).children().first();
+            var noteid = span.data("note-id");
+            var likevalue = span.text();
+
+            alert(noteid + "   " + likevalue);
+
+            if (likeornot) {
+
+
+                $.ajax({
+
+                    method: "POST",
+                    url: "/Home/LikeCount",
+                    data: { id: noteid, value: (likevalue+1) }
+
+                }).done(function (data) {
+
+                }).fail(function () {
+
+                });
+
+            } else {
+
+                $.ajax({
+
+                    method: "POST",
+                    url: "/Home/LikeCount",
+                    data: { id: noteid, value: (likevalue-1) }
+
+                }).done(function (data) {
+
+                }).fail(function () {
+
+                });
+
+            }
+
         });
 
+
+
+
+
+
+
+        //var likebtn = $("#likeButton");
+        //var likedata = likebtn.data("liked");
+        //var likespan = likebtn.children().first();
+        //var likevalue = likespan.val();
+        //var noteid = likespan.id();
+
+        //if (likedata) {
+
+        //    $("#likeButton").click(function () {
+           
+
+        //        $.ajax({
+
+        //            method: "POST",
+        //            url: "/Home/LikeCount",
+        //            data: { id: noteid, value: likevalue }
+
+        //        });
+
+        //    }).done(function (data) {
+
+        //        likespan.val() = data.result;
+        //        console.log("başarılı artırma");
+
+        //        }).fail(function () {
+
+
+        //        });
+
+        //}
+        //else {
+
+        //    $("#likeButton").click(function () {
+
+        //        $.ajax({
+
+        //            method: "POST",
+        //            url: "/Home/CountLike",
+        //            data: { id: noteid, value: likevalue }
+
+        //        });
+
+        //    }).done(function (data) {
+
+        //        likespan.val() = data.result;
+        //        console.log("başarılı azaltma");
+
+        //    }).fail(function () {
+
+
+        //    });
+
+        //}
+
+
     });
+
+
+
 
 </script>

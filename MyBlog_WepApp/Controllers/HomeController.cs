@@ -329,6 +329,27 @@ namespace MyBlog_WepApp.Controllers
    
         }
 
+
+        public JsonResult LikeCount(int id,int value)
+        {
+            LikeManager likeManager = new LikeManager();
+
+            BlogUser user = Session["login"] as BlogUser;
+           
+            if (user != null) {
+
+                int likevalue = likeManager.GetLike(id);        
+
+                return Json(new { result = likevalue }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+
+                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
+            }
+
+           
+        }
         //bu method yerine artık generic error sayfası kullanılacak
         //public ActionResult UserActivateCancel()
         //{
